@@ -62,4 +62,9 @@ class User extends Authenticatable
     {
         return $this->morphOne(Address::class, 'owner');
     }
+
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = bcrypt($value);
+    }
 }

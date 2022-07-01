@@ -40122,10 +40122,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/css/app.css":
-/*!*******************************!*\
-  !*** ./resources/css/app.css ***!
-  \*******************************/
+/***/ "./resources/css/adminlte.css":
+/*!************************************!*\
+  !*** ./resources/css/adminlte.css ***!
+  \************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -40531,7 +40531,7 @@ module.exports = JSON.parse('{"_from":"axios@^0.21","_id":"axios@0.21.4","_inBun
 /******/ 	__webpack_require__.O(undefined, ["css/app","css/icheck-bootstrap","css/fontawesome"], () => (__webpack_require__("./resources/js/app.js")))
 /******/ 	__webpack_require__.O(undefined, ["css/app","css/icheck-bootstrap","css/fontawesome"], () => (__webpack_require__("./resources/css/plugins/fontawesome-free/css/all.css")))
 /******/ 	__webpack_require__.O(undefined, ["css/app","css/icheck-bootstrap","css/fontawesome"], () => (__webpack_require__("./resources/css/plugins/icheck-bootstrap/icheck-bootstrap.css")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/app","css/icheck-bootstrap","css/fontawesome"], () => (__webpack_require__("./resources/css/app.css")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/app","css/icheck-bootstrap","css/fontawesome"], () => (__webpack_require__("./resources/css/adminlte.css")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

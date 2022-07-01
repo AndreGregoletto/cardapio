@@ -1,60 +1,59 @@
-<x-guest-layout>
-    <div class="login-box container">
-        <div class="login-logo">
-            <a href="#"><p class="text-center mb-2 mt-3"><b>CARDÁPIO</b>online</p></a>
-        </div>
-        <!-- /.login-logo -->
-        <div class="card">
-            <div class="card-body login-card-body">
-            <p class="login-box-msg text-center mb-3">Sign in to start your session</p>
-
-            <form action="{{route('login')}}" method="post">
+<x-guest-layout class="hold-transition login-page">
+    <div class="login-box">
+        <div class="card card-outline card-primary">
+           <div class="card-header text-center">
+              <a href="{{ route('login') }}" class="h4"><b>Cardapio</b> <h6>Online</h6></a>
+           </div>
+           <div class="card-body">
+              <p class="login-box-msg">Faça login para iniciar sua sessão</p>
+              <form action="{{ route('login') }}" method="POST">
                 @csrf
-                <div class="input-group mb-3">
-                    <input type="email" class="form-control @error('email') is-Invalid @enderror" name="email" placeholder="E-mail">
-                </div>
-                @error('email')
-                    <div class="alert alert-danger">{{$message}}</div>
-                @enderror
-                <div class="input-group mb-3">
-                    <input type="password" class="form-control @error('password') is-Invalid @enderror" name="password" placeholder="Senha">
-                </div>
-                @error('password')
-                    <div class="alert alert-danger">{{$message}}</div>
-                @enderror
-                <div class="row">
-                    <div class="col-8">
-                        <div class="icheck-primary">
-                        <input type="checkbox" name="rememberme" id="remember">
-                        <label for="remember">
-                            Lembrar-me
-                        </label>
+                 <div class="input-group mb-3">
+                    <input type="email" class="form-control @error('email') is-invalid  @enderror" name="email" placeholder="E-mail">
+                    <div class="input-group-append">
+                       <div class="input-group-text">
+                          <span class="fas fa-envelope"></span>
+                       </div>
                     </div>
-                </div>
-                <!-- /.col -->
-                <div class="col-4">
-                    <button type="submit" class="btn btn-outline-primary btn-block bg-primary text-white">Entrar</button>
-                </div>
-                <!-- /.col -->
-                </div>
-            </form>
-
-            <div class="social-auth-links text-center mb-3">
-                <p class="mb-3">- Ou -</p>
-                <a href="#" class="btn btn-block btn-primary">
-                <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
-                </a>
-                <a href="#" class="btn btn-block btn-danger">
-                <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
-                </a>
-            </div>
-            <!-- /.social-auth-links -->
-
-            <p class="mb-1">
-                <a href="{{route('password.request')}} text-left">Esqeuceu a senha?</a>
-            </p>
-            </div>
-            <!-- /.login-card-body -->
+                 </div>
+                 @error('email')
+                        <span class=" input-group mb-3 alert alert-danger"> {{ $message }}</span> 
+                    @enderror
+                 <div class="input-group mb-3">
+                    <input type="password" class="form-control @error('password') is-invalid  @enderror" name="password" placeholder="Senha">
+                    <div class="input-group-append">
+                       <div class="input-group-text">
+                          <span class="fas fa-lock"></span>
+                       </div>
+                    </div>
+                 </div>
+                    @error('password')
+                        <span class=" input-group mb-3 alert alert-danger"> {{ $message }}</span> 
+                    @enderror
+                 <div class="row">
+                    <div class="col-8">
+                       <div class="icheck-primary">
+                          <input type="checkbox" name="remember" id="remember">
+                          <label for="remember">
+                          Remember Me
+                          </label>
+                       </div>
+                    </div>
+                    <div class="col-4">
+                       <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+                    </div>
+                 </div>
+              </form>
+              
+              <p class="mb-1">
+                 <a href="{{ route('password.request') }}">I forgot my password</a>
+              </p>
+              <!--
+                <p class="mb-0">
+                    <a href="register.html" class="text-center">Register a new membership</a>
+                </p>
+              -->
+           </div>
         </div>
-    </div>
+     </div>
 </x-guest-layout>
