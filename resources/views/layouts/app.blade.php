@@ -34,39 +34,17 @@
             <div class="content-wrapper">
                 {{ $slot }}
             </div>
+            <footer class="main-footer">
+                <!-- To the right -->
+                <div class="float-right d-none d-sm-inline">
+                    Anything you want
+                </div>
+                <!-- Default to the left -->
+                <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+            </footer>
         </div>
 
         <!-- Scripts -->
-        <script scr="{{ mix('js/app.js') }}" defer></script>
-        
-
-        <script src="plugins/jquery/jquery.min.js"></script>
-
-        {{-- <script>
-        $.widget.bridge('uibutton', $.ui.button)
-        </script>
-
-
-        <script src="plugins/chart.js/Chart.min.js"></script>
-
-        <script src="plugins/sparklines/sparkline.js"></script>
-
-        <script src="plugins/jqvmap/jquery.vmap.min.js"></script>
-        <script src="plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
-
-        <script src="plugins/jquery-knob/jquery.knob.min.js"></script>
-
-        <script src="plugins/moment/moment.min.js"></script>
-        <script src="plugins/daterangepicker/daterangepicker.js"></script>
-
-        <script src="plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
-
-        <script src="plugins/summernote/summernote-bs4.min.js"></script>
-
-        <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-
-        <script src="dist/js/demo.js"></script>
-
-        <script src="dist/js/pages/dashboard.js"></script> --}}
+        <script src="{{ mix('js/app.js') }}" defer></script>
     </body>
 </html>
