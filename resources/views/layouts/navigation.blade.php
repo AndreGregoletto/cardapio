@@ -48,44 +48,44 @@
             Home
           </x-nav-link>
         </li>
+        @if(auth()->user()->hasRole('Admin'))
         <li class="nav-item">          
           <x-nav-link href="#">
-            <i class="nav-icon fas fa-tachometer-alt"></i>
-            Cadárpio
+            <i class="nav-icon fas fa-users"></i>
+            Colaboradores
           </x-nav-link>
         </li>
-        {{-- <li class="nav-item menu-open">
-          <a href="#" class="nav-link active">
-            <i class="nav-icon fas fa-tachometer-alt"></i>
-            <p>
-              Starter Pages
-              <i class="right fas fa-angle-left"></i>
-            </p>
-          </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href="#" class="nav-link active">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Active Page</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Inactive Page</p>
-              </a>
-            </li>
-          </ul>
-        </li> --}}
-        {{-- <li class="nav-item">
-          <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-th"></i>
-            <p>
-              Simple Link
-              <span class="right badge badge-danger">New</span>
-            </p>
-          </a>
-        </li> --}}
+        <li class="nav-item">          
+          <x-nav-link href="#">
+            <i class="nav-icon fas fa-users"></i>
+            Clientes
+          </x-nav-link>
+        </li>
+        <li class="nav-item">          
+          <x-nav-link href="#">
+            <i class="nav-icon fas fa-list-ol"></i>
+            Categorias
+          </x-nav-link>
+        </li>
+        <li class="nav-item">          
+          <x-nav-link href="#">
+            <i class="nav-icon fas fa-th-list"></i>
+            Produtos
+          </x-nav-link>
+        </li>
+        <li class="nav-item">          
+          <x-nav-link href="#">
+            <i class="nav-icon fas fa-basket-shopping"></i>
+            Pedidos
+          </x-nav-link>
+        </li>
+        <li class="nav-item">          
+          <x-nav-link href="#">
+            <i class="nav-icon fas fa-cog"></i>
+            Configurações
+          </x-nav-link>
+        </li>
+        @endif
       </ul>
     </nav>
     <!-- /.sidebar-menu -->
