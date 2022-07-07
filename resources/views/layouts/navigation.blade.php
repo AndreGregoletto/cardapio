@@ -62,7 +62,7 @@
           </x-nav-link>
         </li>
         <li class="nav-item">          
-          <x-nav-link href="#">
+          <x-nav-link href="{{route('admin.categories.index')}}" active="admin.categories.*">
             <i class="nav-icon fas fa-list-ol"></i>
             Categorias
           </x-nav-link>
