@@ -22,16 +22,24 @@
     <body class="hold-transition sidebar-mini">
         <div class="wrapper">
             @include('layouts.navigation')
-
             <!-- Page Heading -->
             <header class="bg-white shadow">
                 <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    {{ $header }}
+                    
                 </div>
             </header>
 
             <!-- Page Content -->
             <div class="content-wrapper">
+                <div class="content-header">
+                    <div class="container-fluid">
+                        <div class="row mb-2">
+                            <div class="col-sm-6">
+                                <h1 class="m-0">{{ $header }}</h1>
+                            </div><!-- /.col -->
+                        </div><!-- /.row -->
+                    </div><!-- /.container-fluid -->
+                </div>
                 {{ $slot }}
             </div>
             <footer class="main-footer">
@@ -40,7 +48,7 @@
                     Anything you want
                 </div>
                 <!-- Default to the left -->
-                <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+                <strong>Copyright &copy; 2014-2022 <a href="https://adminlte.io">{{config('app.name')}}</a>.</strong> Todos Os Direitos Reservados.
             </footer>
         </div>
 

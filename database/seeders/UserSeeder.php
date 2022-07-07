@@ -18,6 +18,12 @@ class UserSeeder extends Seeder
             'name'      => 'André Gregoletto',
             'email'     => 'andre@email.com',
             'password' => 123
-        ]);
+        ])->roles()->attach(1);
+
+        User::create([
+            'name'      => 'Funcionário',
+            'email'     => 'fun@email.com',
+            'password' => 123
+        ])->roles()->attach(2);
     }
 }
