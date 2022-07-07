@@ -50,7 +50,7 @@
         </li>
         @if(auth()->user()->hasRole('Admin'))
         <li class="nav-item">          
-          <x-nav-link href="{{route('admin.collaborators.index')}}">
+          <x-nav-link href="{{route('admin.collaborators.index')}}" active="admin.collaborators.*">
             <i class="nav-icon fas fa-users"></i>
             Colaboradores
           </x-nav-link>

@@ -3,11 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Collaborator\RequestCreate;
+use App\Http\Requests\Collaborator\RequestUpdate;
 
 class CollaboratorController extends Controller
 {
+    public function __construtct()
+    {
+        $this->middleware('role:Admin');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +20,9 @@ class CollaboratorController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::whereHas('roles', function($query) {
+            $query->whereNotIn('name', ['Admin']);
+        })->paginate(10);
 
         return view('admin.collaborator.index', ['users' => $users]);
     }
@@ -33,12 +40,18 @@ class CollaboratorController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  RequestCreate $request
+     * @return Reeirect
      */
-    public function store(Request $request)
+    public function store(RequestCreate $request)
     {
-        //
+        $data = $request->validated();
+        
+        $user = User::create($data);
+
+        $user->roles()->attach(2);
+
+        return back();
     }
 
     /**
@@ -55,24 +68,27 @@ class CollaboratorController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  User $user
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        return view('admin.collaborator.edit');
+        return view('admin.collaborator.edit', ['user' => $user]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  RequestUpdate  $request
+     * @param  User $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(RequestUpdate $request, User $user)
     {
-        //
+        $data = $request->validated();
+        $user->update($data);
+        
+        return redirect()->route('admin.collaborators.index');
     }
 
     /**
@@ -81,8 +97,10 @@ class CollaboratorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        $user->delete();
+
+        return back();
     }
 }
