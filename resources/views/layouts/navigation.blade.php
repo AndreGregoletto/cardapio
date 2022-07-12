@@ -68,7 +68,7 @@
           </x-nav-link>
         </li>
         <li class="nav-item">          
-          <x-nav-link href="#">
+          <x-nav-link href="{{route('admin.products.index')}}" active="admin.products.*">
             <i class="nav-icon fas fa-th-list"></i>
             Produtos
           </x-nav-link>
