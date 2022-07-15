@@ -11,6 +11,7 @@
                 <thead>
                     <th>Código</th>
                     <th>Nome</th>
+                    <th>Categoria</th>
                     <th>Preço</th>
                     <th>Ações</th>
                 </thead>
@@ -19,6 +20,7 @@
                         <tr>
                             <td>{{$product->code}}</td>
                             <td>{{$product->name}}</td>
+                            <td>{{$product->category->name}}</td>
                             <td>{{$product->price}}</td>
                             <td>
                                 <div class="btn-group">

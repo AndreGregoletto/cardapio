@@ -1,18 +1,11 @@
 .header{
     padding: 17px 90px;
-    gap: 12px;
-    background: rgba(113, 113, 236, 0.53);
-    color: #fff;
-}
-
-.header .header_type .contact{
-    gap: 12px;
+    background-color: rgba(99, 88, 187, 0.659);
 }
 
 .info{
-    gap: 30px;
-    justify-content: space-evenly;
-    border-bottom: 1px solid #d9d9d9;
+    border-bottom: 1px solid #dee2e6;
+    width: 100%;
 }
 
 .info .info-item{

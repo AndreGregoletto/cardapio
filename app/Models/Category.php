@@ -17,6 +17,16 @@ class Category extends Model
 
     public function products()
     {
-        return $this->hasMnay(Product::class);
+        return $this->hasMany(Product::class);
+    }
+
+    public function scopeIsActive($query)
+    {
+        $query->where('status', 'active');
+    }
+
+    public function scopeIsInactive($query)
+    {
+        $query->where('status', 'inactive');
     }
 }
