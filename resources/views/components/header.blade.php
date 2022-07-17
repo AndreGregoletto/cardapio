@@ -2,7 +2,7 @@
     <div class="d-flex justify-content-between aling-items-center">
         <div class="d-flex header-container aling-items-center">
             <div class="logo">
-                <img class="img-fluid rounded-circle" src="https://ui-avatars.com/api?background=OD8ABC&color=fff&size=260px" alt="Avatar">
+                <img class="img-fluid rounded-circle" src="https://ui-avatars.com/api?background=OD8ABC&color=fff&size=220px" alt="Avatar">
             </div>
             <div class="header_type">
                 <p>Esfiharia</p>

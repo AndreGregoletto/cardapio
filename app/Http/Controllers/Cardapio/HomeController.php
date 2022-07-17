@@ -21,13 +21,16 @@ class HomeController extends Controller
 
     public function cart()
     {
+        // session()->forget('cart');
+        // session()->save();
+
         $products = [];
 
         if(session()->has('cart')){
             $products = session()->get('cart');
         }
 
-        dd($products);
+        return view('cardapio.cart', ['products' => $products]);
     }
 
     public function addCart(Product $product)
@@ -36,13 +39,26 @@ class HomeController extends Controller
             $products = collect(session()->get('cart'));
 
             if($products->where('id', $product->id)->count()){
-                $products->where('id', $product->id)->first()->quantity += 1;
+
+                $products = $products->map(function($item) use ($product) {
+                    if($item['id'] == $product->id) {
+                        $item['quantity'] += 1;
+                    }
+
+                    return $item;
+                });
+
             }else{
-                // $products->push([
-                //     'id'       => $product->id,
-                //     'quantity' => 1 + 1
-                // ]);
+
+                $products->push([
+                    'id'       => $product->id,
+                    'product'  => $product,
+                    'quantity' => 1
+                ]);
+
             }
+
+            session()->put('cart', $products);
 
             return redirect()->route('menu.cart');
         }
