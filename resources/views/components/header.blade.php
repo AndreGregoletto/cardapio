@@ -5,8 +5,10 @@
                 <img class="img-fluid rounded-circle" src="https://ui-avatars.com/api?background=OD8ABC&color=fff&size=220px" alt="Avatar">
             </div>
             <div class="header_type">
-                <p>Esfiharia</p>
-                <h2>HABBIBS</h2>
+                <a href="{{ route('home') }}" class="text-white">
+                    <p>Esfiharia</p>
+                    <h2>HABBIBS</h2>
+                </a>
                 <div class="d-flex contact">
                     <div>(11) 11111-11111</div>
                     <div>(11) 11111-11111</div>

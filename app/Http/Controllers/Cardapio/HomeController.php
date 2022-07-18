@@ -24,7 +24,7 @@ class HomeController extends Controller
         // session()->forget('cart');
         // session()->save();
 
-        $products = [];
+        $products = collect();
 
         if(session()->has('cart')){
             $products = session()->get('cart');
@@ -36,6 +36,7 @@ class HomeController extends Controller
     public function addCart(Product $product)
     {
         if(session()->has('cart')) {
+
             $products = collect(session()->get('cart'));
 
             if($products->where('id', $product->id)->count()){
@@ -43,14 +44,15 @@ class HomeController extends Controller
                 $products = $products->map(function($item) use ($product) {
                     if($item['id'] == $product->id) {
                         $item['quantity'] += 1;
+                        $item['total'] = $product->price * $item['quantity'];
                     }
 
                     return $item;
                 });
 
             }else{
-
                 $products->push([
+                    'total'    => $product->price,
                     'id'       => $product->id,
                     'product'  => $product,
                     'quantity' => 1
@@ -63,12 +65,28 @@ class HomeController extends Controller
             return redirect()->route('menu.cart');
         }
 
-        session()->put('cart', [
-            'id'       => $product->id,
-            'quantity' => 1
-        ]);
+        session()->put('cart', collect([
+            [
+                'total'    => $product->price,
+                'id'       => $product->id,
+                'product'  => $product,
+                'quantity' => 1
+            ]
+        ]));
 
         return redirect()->route('menu.cart');
 
     }
+
+    public function removeCart($index)
+    {
+        $products = session()->get('cart');
+
+        $products->splice($index, 1);
+
+        session()->put('cart', $products);
+
+        return back();
+    }
+
 }
