@@ -8,4 +8,6 @@ Route::group(['as' => 'menu.'], function() {
 
     Route::get('cart/add/{product}', [HomeController::class, 'addCart'])->name('cart.add');
     Route::get('cart/remove/{index}', [HomeController::class, 'removeCart'])->name('cart.remove');
+
+    Route::post('cart/checkout', [HomeCOntroller::class, 'checkout'])->name('cart.checkout');
 });

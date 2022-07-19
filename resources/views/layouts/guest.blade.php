@@ -19,6 +19,7 @@
 
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}"></script>
+        @stack('scripts')
         {{-- <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script> --}}
     </body>
 </html>

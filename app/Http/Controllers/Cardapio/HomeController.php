@@ -6,6 +6,9 @@ use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Menu\CheckoutRequest;
+use App\Models\Client;
+use App\Models\Order;
 
 class HomeController extends Controller
 {
@@ -87,6 +90,46 @@ class HomeController extends Controller
         session()->put('cart', $products);
 
         return back();
+    }
+
+    public function checkout(CheckoutRequest $request)
+    {
+        $data = $request->validated();
+
+        $products = $this->prepareProductsRelation();
+
+        $client = Client::create($data);
+
+        $client->address()->create($data);
+
+        $data['client_id'] = $client->id;
+
+        $data['type_payment_id'] = 1;
+
+        $data['date'] = now()->format('y-m-d');
+
+        $order = Order::create($data);
+
+        $order->products()->attach($products);
+
+        dd($order->load('products'));
+    }
+
+    protected function prepareProductsRelation()
+    {
+        if(session()->has('cart')) {
+            $products = session()->get('cart');
+
+            return $products->keyBy(function($product) {
+                return $product['product']->id;
+            })->map(function($product) {
+                return [
+                    'quantity' => $product['quantity']
+                ];
+            });
+        }
+
+        return [];
     }
 
 }
