@@ -21,7 +21,7 @@ class Order extends Model
     ];
 
     protected $casts = [
-        'date' => 'date',
+        'date'     => 'date',
         'delivery' => 'booleam'
     ];
 

@@ -24,6 +24,7 @@ try{
 
 try {
   Mask(document.getElementById('zipcode')).maskPattern('99999-999')
+
 }catch(e) {
 
 }

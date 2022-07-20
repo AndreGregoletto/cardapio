@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\Cardapio;
 
-use App\Models\Product;
-use App\Models\Category;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-// use App\Models\TypePayment;
 use App\Http\Requests\Menu\CheckoutRequest;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\Models\Category;
+use App\Models\Product;
 use App\Models\Client;
 use App\Models\Order;
 
@@ -69,7 +68,7 @@ class HomeController extends Controller
             return redirect()->route('menu.cart');
         }
 
-        session()->put('cart', collect([
+        session()->put('cart', collect()->push([
             [
                 'total'    => $product->price,
                 'id'       => $product->id,
@@ -96,12 +95,15 @@ class HomeController extends Controller
     public function checkout(CheckoutRequest $request)
     {
         $data = $request->validated();
-        // dd($data); //Ta passando dados
+        // dd($data); // Ta passando dados
 
         $products = $this->prepareProductsRelation();
+        // dd($products); // Está certo
 
         $client = Client::create($data);
+        // dd($client); // Está certo
 
+        dd($client->address()); // Apresentando erro
         $client->address()->create($data);
 
         $data['client_id'] = $client->id;
@@ -114,6 +116,8 @@ class HomeController extends Controller
 
         $order->products()->attach($products);
 
+        dd($order->load('products'));
+
         $url = "https://wa.me/5511977195214";
 
         $pedido = $order->products->pluck('name')->joint(', ', ' e ');
@@ -124,7 +128,7 @@ class HomeController extends Controller
 
         $text = "
             Um pedido feito com sucesso!
-            
+
             Nome: {$client->name},
             Endereço: {$client->address->place}
 

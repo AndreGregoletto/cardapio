@@ -36,7 +36,7 @@ class CheckoutRequest extends FormRequest
             'name'         => 'required',
             'phone'        => 'sometimes',
             'cell'         => 'required',
-            'delivery'     => 'sometimes|boolean',
+            'delivery'     => 'required|boolean',
             'zipcode'      => 'required',
             'address'      => 'required',
             'neighborhood' => 'required',
