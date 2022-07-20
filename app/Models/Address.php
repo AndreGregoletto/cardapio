@@ -21,6 +21,12 @@ class Address extends Model
 
     public function owner()
     {
-        return $this->morphTo();
+        return $this->morphTo(Address::class);
     }
+
+    // public function getPlaceAttribute()
+    // {
+    //     return $this->attributes['address'] = "{$this->attributes['address']},  {$this->attributes['number']}";
+    // }
+
 }

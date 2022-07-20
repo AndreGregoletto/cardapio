@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+// use App\Models\TypePayment;
 use App\Http\Requests\Menu\CheckoutRequest;
 use App\Models\Client;
 use App\Models\Order;
@@ -95,6 +96,7 @@ class HomeController extends Controller
     public function checkout(CheckoutRequest $request)
     {
         $data = $request->validated();
+        // dd($data); //Ta passando dados
 
         $products = $this->prepareProductsRelation();
 
@@ -112,7 +114,31 @@ class HomeController extends Controller
 
         $order->products()->attach($products);
 
-        dd($order->load('products'));
+        $url = "https://wa.me/5511977195214";
+
+        $pedido = $order->products->pluck('name')->joint(', ', ' e ');
+
+        $total = $order->products->sum(function($product){
+            return $product->price * $product->pivot->quantity;
+        });
+
+        $text = "
+            Um pedido feito com sucesso!
+            
+            Nome: {$client->name},
+            Endereço: {$client->address->place}
+
+            Pedido:
+                {$pedido}
+
+            Entrega: {$order->delivery}
+
+            Total: {$total}
+
+        ";
+
+        // return redirect()->to($url.'?text='.http_build_query($text));
+        return redirect()->to($url.'?text='.urlencode($text));
     }
 
     protected function prepareProductsRelation()

@@ -29,9 +29,3 @@ if(mix.inProduction()) {
 }
 
 mix.disableNotifications();
-
-// mix.webpackConfig({
-//     stats: {
-//         children: true,
-//     },
-// });
