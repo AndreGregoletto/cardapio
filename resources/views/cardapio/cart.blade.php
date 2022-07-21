@@ -17,14 +17,13 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($products as $value => $product)
+                @foreach ($products as $product)
                     <tr>
                         <td>{{ $product['product']->name }}</td>
                         <td>{{ $product['quantity'] }}</td>
                         <td>{{ 'R$ ' . number_format(floatval($product['total']), 2, ',', '.') }}</td>
                         <td>
-                            <a href="{{ route('menu.cart.remove', $loop->index) }}" class="btn btn-danger"><i
-                                    class="fas fa-trash"></i></a>
+                            <a href="{{ route('menu.cart.remove', $loop->index) }}" class="btn btn-danger"><i class="fas fa-trash"></i></a>
                         </td>
                     </tr>
                 @endforeach
@@ -37,8 +36,7 @@
                 </tr>
             </tfooter>
         </table>
-
-        <div class="row">
+        <div class="row">{{-- Linha 1 --}}
             <div class="col-4">
                 <div class="form-group">
                     <label for="name">Nome</label>
@@ -53,13 +51,12 @@
             </div>
             <div class="col-4">
                 <div class="form-group">
-                    <label for="name">Celular</label>
+                    <label for="cell">Celular</label>
                     <input type="text" class="form-control" id="cell" name="cell">
                 </div>
             </div>
         </div>
-
-        <div class="row mb-3">
+        <div class="row mb-3">{{-- Linha 2 --}}
             <div class="col-12">
                 <p>Vai ser entrega?</p>
             </div>
@@ -76,8 +73,7 @@
                 </div>
             </div>
         </div>
-
-        <div class="row">
+        <div class="row">{{-- Linha 3 --}}
             <div class="col-4">
                 <div class="form-group">
                     <label for="zipcode">CEP</label>
@@ -121,8 +117,6 @@
                 </div>
             </div>
         </div>
-
-
         <div class="d-flex justify-content-end">
             <button class="btn btn-primary">Finalizar compra</button>
         </div>

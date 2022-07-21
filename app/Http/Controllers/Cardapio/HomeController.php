@@ -37,7 +37,7 @@ class HomeController extends Controller
     }
 
     public function addCart(Product $product)
-    {
+    { 
         if(session()->has('cart')) {
 
             $products = collect(session()->get('cart'));
@@ -45,6 +45,7 @@ class HomeController extends Controller
             if($products->where('id', $product->id)->count()){
 
                 $products = $products->map(function($item) use ($product) {
+
                     if($item['id'] == $product->id) {
                         $item['quantity'] += 1;
                         $item['total'] = $product->price * $item['quantity'];
@@ -69,12 +70,10 @@ class HomeController extends Controller
         }
 
         session()->put('cart', collect()->push([
-            [
-                'total'    => $product->price,
-                'id'       => $product->id,
-                'product'  => $product,
-                'quantity' => 1
-            ]
+            'total'    => $product->price,
+            'id'       => $product->id,
+            'product'  => $product,
+            'quantity' => 1
         ]));
 
         return redirect()->route('menu.cart');
@@ -95,15 +94,11 @@ class HomeController extends Controller
     public function checkout(CheckoutRequest $request)
     {
         $data = $request->validated();
-        // dd($data); // Ta passando dados
 
         $products = $this->prepareProductsRelation();
-        // dd($products); // Está certo
 
         $client = Client::create($data);
-        // dd($client); // Está certo
 
-        dd($client->address()); // Apresentando erro
         $client->address()->create($data);
 
         $data['client_id'] = $client->id;
@@ -116,11 +111,11 @@ class HomeController extends Controller
 
         $order->products()->attach($products);
 
-        dd($order->load('products'));
+        // dd($order->load('products'));
 
         $url = "https://wa.me/5511977195214";
 
-        $pedido = $order->products->pluck('name')->joint(', ', ' e ');
+        $pedido = $order->products->pluck('name')->join(', ', ' e ');
 
         $total = $order->products->sum(function($product){
             return $product->price * $product->pivot->quantity;
@@ -141,7 +136,6 @@ class HomeController extends Controller
 
         ";
 
-        // return redirect()->to($url.'?text='.http_build_query($text));
         return redirect()->to($url.'?text='.urlencode($text));
     }
 

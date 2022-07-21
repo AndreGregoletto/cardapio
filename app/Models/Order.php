@@ -22,7 +22,7 @@ class Order extends Model
 
     protected $casts = [
         'date'     => 'date',
-        'delivery' => 'booleam'
+        'delivery' => 'boolean'
     ];
 
     public function client()
@@ -38,5 +38,10 @@ class Order extends Model
     public function products()
     {
         return $this->belongsToMany(Product::class, 'product_order', 'order_id', 'product_id');
+    }
+
+    public function getDeliveryAttribute()
+    {
+        return $this->attributes['delivery'] ? 'Sim' : 'Não';
     }
 }
