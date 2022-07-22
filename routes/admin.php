@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\Admin\CollaboratorController;
-
+use App\Http\Controllers\Admin\TypePaymentController;
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function(){
     Route::resource('collaborators', CollaboratorController::class)->parameters([
@@ -15,4 +15,5 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function(){
 
     Route::resource('products', ProductController::class);
 
+    Route::resource('type-payment', TypePaymentController::class);
 });

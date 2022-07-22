@@ -1,3 +1,7 @@
+@props([
+    'typePayments'
+])
+
 <div class="header">
     <div class="d-flex justify-content-between aling-items-center">
         <div class="d-flex header-container aling-items-center">
@@ -26,6 +30,9 @@
     </div>
     <div class="info-item">
         <p>Formas de Pagamento</p>
+        <p>
+            {{$typePayments->pluck('name')->join(', ', ' e ')}}
+        </p>
     </div>
     <div class="info-item">
         <p>Entrega</p>

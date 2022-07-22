@@ -3,7 +3,7 @@
         <link rel="stylesheet" href="{{mix('css/cardapio.css')}}">
     @endpush
 
-    <x-header />
+    <x-header :type-payments="$typePayments" />
 
     <div class="d-flex my-5 justify-content-center">
         <div class="w-75">

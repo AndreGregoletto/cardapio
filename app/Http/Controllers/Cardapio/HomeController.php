@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\Client;
 use App\Models\Order;
+use App\Models\TypePayment;
 
 class HomeController extends Controller
 {
@@ -19,7 +20,9 @@ class HomeController extends Controller
             ->isActive()
             ->get();
 
-        return view('cardapio.index', ['categories' => $categories]);
+        $typePayments = TypePayment::all();
+
+        return view('cardapio.index', ['categories' => $categories, 'typePayments' => $typePayments]);
     }
 
     public function cart()
@@ -37,7 +40,7 @@ class HomeController extends Controller
     }
 
     public function addCart(Product $product)
-    { 
+    {
         if(session()->has('cart')) {
 
             $products = collect(session()->get('cart'));
@@ -110,8 +113,6 @@ class HomeController extends Controller
         $order = Order::create($data);
 
         $order->products()->attach($products);
-
-        // dd($order->load('products'));
 
         $url = "https://wa.me/5511977195214";
 
