@@ -76,7 +76,7 @@
                     </x-nav-link>
                 </li>
                 <li class="nav-item">
-                    <x-nav-link href="{{route('admin.type-payment.index')}}" active="admin.type-payment.*">
+                    <x-nav-link href="{{route('admin.type-payments.index')}}" active="admin.type-payment.*">
                         <i class="nav-icon fas fa-credit-card"></i>
                         Métodos de pagamento
                     </x-nav-link>

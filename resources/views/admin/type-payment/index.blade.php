@@ -4,7 +4,7 @@
     </x-slot>
     <div class="card">
         <div class="card-header d-flex justify-content-end">
-            <a href="{{route('admin.type-payment.create')}}" class="btn btn-primary">Cadastrar</a>
+            <a href="{{route('admin.type-payments.create')}}" class="btn btn-primary">Cadastrar</a>
         </div>
         <div class="card-body">
             <table class="table table-striped table-bordered">
@@ -20,15 +20,15 @@
                             <td>{{__($typePayment->status)}}</td>
                             <td>
                                 <div class="btn-group">
-                                    <a href="{{route('admin.type-payment.edit', $typePayment->id)}}" class="btn btn-info"><i class="fas fa-edit"></i></a>
+                                    <a href="{{route('admin.type-payments.edit', $typePayment->id)}}" class="btn btn-info"><i class="fas fa-edit"></i></a>
                                     <a
-                                        href="{{route('admin.type-payment.destroy', $typePayment->id)}}"
+                                        href="{{route('admin.type-payments.destroy', $typePayment->id)}}"
                                         onclick="event.preventDefault();
                                         document.getElementById('form-delete-{{$typePayment->id}}').submit();"
                                         class="btn btn-danger"
                                     >
                                     <i class="fas fa-trash"></i></a>
-                                    <form action="{{route('admin.type-payment.destroy', $typePayment->id)}}" id="form-delete-{{$typePayment->id}}" method="POST" class="d-none">
+                                    <form action="{{route('admin.type-payments.destroy', $typePayment->id)}}" id="form-delete-{{$typePayment->id}}" method="POST" class="d-none">
                                         @csrf
                                         @method('delete')
                                     </form>

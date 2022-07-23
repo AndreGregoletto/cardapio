@@ -1,7 +1,3 @@
-@props([
-    'typePayments'
-])
-
 <div class="header">
     <div class="d-flex justify-content-between aling-items-center">
         <div class="d-flex header-container aling-items-center">
@@ -29,13 +25,13 @@
         <p>das x até as 23:59</p>
     </div>
     <div class="info-item">
-        <p>Formas de Pagamento</p>
+        <p class="font-weight-bolder">Formas de Pagamento</p>
         <p>
             {{$typePayments->pluck('name')->join(', ', ' e ')}}
         </p>
     </div>
     <div class="info-item">
-        <p>Entrega</p>
+        <p class="font-weight-bolder">Entrega</p>
         <p>De 40 a 55 minutos (aprox.)</p>
     </div>
 </div>

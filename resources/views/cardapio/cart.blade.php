@@ -31,7 +31,7 @@
             <tfooter>
                 <tr>
                     <td colspan="3" class="text-right">
-                        {{ 'R$ ' . number_format(floatval($products->sum('total')), 2, ',', '.') }}
+                        SubTotal: {{ 'R$ ' . number_format(floatval($products->sum('total')), 2, ',', '.') }}
                     </td>
                 </tr>
             </tfooter>
@@ -57,19 +57,34 @@
             </div>
         </div>
         <div class="row mb-3">{{-- Linha 2 --}}
-            <div class="col-12">
-                <p>Vai ser entrega?</p>
-            </div>
-            <div class="col-1">
-                <div class="form-check">
-                    <input type="radio" name="delivery" value="false" id="delivery-no" class="form-check-label">
-                    <label for="delivery-no" class="form-check-label">Não</label>
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="type_payment_id">Método de Pagamento</label>
+                    <select name="type_payment_id" id="type_payment_id" class="form-control">
+                        <option value="" selected>Selecione</option>
+                        @foreach($typePayments as $typePayment)
+                            <option value="{{ $typePayment->id }}">{{ $typePayment->name }}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
-            <div class="col-1">
-                <div class="form-check">
-                    <input type="radio" checked name="delivery" value="true" id="delivery-yes" class="form-check-label">
-                    <label for="delivery-yes" class="form-check-label">Sim</label>
+            <div class="col-6">
+                <div class="row">
+                    <div class="col-12">
+                        <p class="ml-3 font-weight-bolder">Vai ser entrega?</p>
+                    </div>
+                    <div class="col-2">
+                        <div class="form-check">
+                            <input type="radio" checked name="delivery" value="true" id="delivery-yes" class="form-check-label">
+                            <label for="delivery-yes" class="form-check-label">Sim</label>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="form-check">
+                            <input type="radio" name="delivery" value="false" id="delivery-no" class="form-check-label">
+                            <label for="delivery-no" class="form-check-label">Não</label>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -118,7 +133,7 @@
             </div>
         </div>
         <div class="d-flex justify-content-end">
-            <button class="btn btn-primary">Finalizar compra</button>
+            <button class="btn btn-primary mb-3">Finalizar compra</button>
         </div>
     </form>
     @push('scripts')

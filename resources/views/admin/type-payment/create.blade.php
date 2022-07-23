@@ -4,7 +4,7 @@
     </x-slot>
     <div class="card">
         <div class="card-body">
-            <form action="{{route('admin.type-payment.store')}}" method="post">
+            <form action="{{route('admin.type-payments.store')}}" method="post">
             @csrf
                 <div class="row">
                     <div class="col-6">
@@ -31,7 +31,7 @@
                     </div>
                 </div>
                 <button class="btn btn-primary">Cadastrar</button>
-                <a href="{{route('admin.type-payment.index')}}" class="btn btn-dark">Voltar</a>
+                <a href="{{route('admin.type-payments.index')}}" class="btn btn-dark">Voltar</a>
             </form>
         </div>
     </div>

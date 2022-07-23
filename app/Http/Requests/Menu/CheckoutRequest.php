@@ -32,18 +32,18 @@ class CheckoutRequest extends FormRequest
     public function rules()
     {
         return [
-            'method_payment_id' => 'sometimes',
-            'name'         => 'required',
-            'phone'        => 'sometimes',
-            'cell'         => 'required',
-            'delivery'     => 'required|boolean',
-            'zipcode'      => 'required',
-            'address'      => 'required',
-            'neighborhood' => 'required',
-            'number'       => 'required',
-            'complement'   => 'sometimes',
-            'city'         => 'required',
-            'state'        => 'required'
+            'type_payment_id' => 'required',
+            'name'            => 'required',
+            'phone'           => 'sometimes',
+            'cell'            => 'required',
+            'delivery'        => 'required|boolean',
+            'zipcode'         => 'required',
+            'address'         => 'required',
+            'neighborhood'    => 'required',
+            'number'          => 'required',
+            'complement'      => 'sometimes',
+            'city'            => 'required',
+            'state'           => 'required'
         ];
     }
 }

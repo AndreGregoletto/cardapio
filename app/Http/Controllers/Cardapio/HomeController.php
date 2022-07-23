@@ -20,9 +20,7 @@ class HomeController extends Controller
             ->isActive()
             ->get();
 
-        $typePayments = TypePayment::all();
-
-        return view('cardapio.index', ['categories' => $categories, 'typePayments' => $typePayments]);
+        return view('cardapio.index', ['categories' => $categories]);
     }
 
     public function cart()
@@ -36,7 +34,9 @@ class HomeController extends Controller
             $products = session()->get('cart');
         }
 
-        return view('cardapio.cart', ['products' => $products]);
+        $typePayments = TypePayment::isActive()->get();
+
+        return view('cardapio.cart', ['products' => $products, 'typePayments' => $typePayments]);
     }
 
     public function addCart(Product $product)
@@ -106,8 +106,6 @@ class HomeController extends Controller
 
         $data['client_id'] = $client->id;
 
-        $data['type_payment_id'] = 1;
-
         $data['date'] = now()->format('y-m-d');
 
         $order = Order::create($data);
@@ -144,6 +142,8 @@ class HomeController extends Controller
     {
         if(session()->has('cart')) {
             $products = session()->get('cart');
+            
+            session()->forget('cart');
 
             return $products->keyBy(function($product) {
                 return $product['product']->id;

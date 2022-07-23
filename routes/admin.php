@@ -15,5 +15,5 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function(){
 
     Route::resource('products', ProductController::class);
 
-    Route::resource('type-payment', TypePaymentController::class);
+    Route::resource('type-payments', TypePaymentController::class);
 });

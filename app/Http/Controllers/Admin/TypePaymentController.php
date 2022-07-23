@@ -82,7 +82,7 @@ class TypePaymentController extends Controller
 
         $typePayment->update($data);
 
-        return redirect()->route('admin.type-payment.index');
+        return redirect()->route('admin.type-payments.index');
     }
 
     /**
