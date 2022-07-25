@@ -58,7 +58,7 @@
                     </x-nav-link>
                 </li>
                 <li class="nav-item">
-                    <x-nav-link href="#">
+                    <x-nav-link href="{{ route('admin.clients.index') }}" active="admin.clients.*">
                         <i class="nav-icon fas fa-users"></i>
                         Clientes
                     </x-nav-link>
