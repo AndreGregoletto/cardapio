@@ -112,7 +112,7 @@ class HomeController extends Controller
 
         $order->products()->attach($products);
 
-        $url = "https://wa.me/5511977195214";
+        $url = "https://wa.me/55{$client->cell}";
 
         $pedido = $order->products->pluck('name')->join(', ', ' e ');
 
