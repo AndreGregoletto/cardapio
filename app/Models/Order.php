@@ -37,11 +37,21 @@ class Order extends Model
 
     public function products()
     {
-        return $this->belongsToMany(Product::class, 'product_order', 'order_id', 'product_id');
+        return $this->belongsToMany(
+            Product::class,
+            'product_order',
+            'order_id',
+            'product_id'
+        )->withPivot('quantity');
     }
 
     public function getDeliveryAttribute()
     {
         return $this->attributes['delivery'] ? 'Sim' : 'Não';
+    }
+
+    public function getTotalAttribute()
+    {
+        return "R$ ".number_format($this->products->sum(fn($item) => $item->price * $item->pivot->quantity), 2,',','.');
     }
 }

@@ -116,10 +116,6 @@ class HomeController extends Controller
 
         $pedido = $order->products->pluck('name')->join(', ', ' e ');
 
-        $total = $order->products->sum(function($product){
-            return $product->price * $product->pivot->quantity;
-        });
-
         $text = "
             Um pedido feito com sucesso!
 
@@ -131,7 +127,7 @@ class HomeController extends Controller
 
             Entrega: {$order->delivery}
 
-            Total: {$total}
+            Total: R$ {$order->total}
 
         ";
 
@@ -142,7 +138,7 @@ class HomeController extends Controller
     {
         if(session()->has('cart')) {
             $products = session()->get('cart');
-            
+
             session()->forget('cart');
 
             return $products->keyBy(function($product) {
@@ -156,5 +152,4 @@ class HomeController extends Controller
 
         return [];
     }
-
 }

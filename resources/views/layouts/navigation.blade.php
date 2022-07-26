@@ -82,13 +82,13 @@
                     </x-nav-link>
                 </li>
                 <li class="nav-item">
-                    <x-nav-link href="#">
+                    <x-nav-link href="{{route('admin.orders.index')}}" active="admin.orders.*">
                         <i class="nav-icon fas fa-basket-shopping"></i>
                         Pedidos
                     </x-nav-link>
                 </li>
                 <li class="nav-item">
-                    <x-nav-link href="#">
+                    <x-nav-link href="{{route('admin.configurations.index')}}" active="admin.configurations.*">
                         <i class="nav-icon fas fa-cog"></i>
                         Configurações
                     </x-nav-link>
