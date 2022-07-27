@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Cardapio\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,9 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome')->name('home');
-});
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/login', function () {
     return view('login')->name('login');
@@ -28,3 +27,5 @@ Route::get('/dashboard', function () {
 require __DIR__.'/auth.php';
 
 require __DIR__.'/admin.php';
+
+require __DIR__.'/menu.php';

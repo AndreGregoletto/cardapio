@@ -19,4 +19,9 @@ class TypePayment extends Model
     {
         return $this->hasMany(Order::class);
     }
+
+    public function scopeIsActive($query)
+    {
+        return $query->where('status', 'active');
+    }
 }
