@@ -45,13 +45,13 @@
                     <div class="col-6">
                         <div class="form-group">
                             <label for="open">Horário de Abrir</label>
-                            <input type="text" value="{{ $configuration->open }}" name="open" id="open" class="form-control">
+                            <input type="time" value="{{ $configuration->open->format('H:i:s') }}" name="open" id="open" class="form-control">
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="form-group">
                             <label for="close">Horário de fechar</label>
-                            <input type="text" value="{{ $configuration->close }}" name="close" id="close" class="form-control">
+                            <input type="time" value="{{ $configuration->close->format('H:i:s') }}" name="close" id="close" class="form-control">
                         </div>
                     </div>
                 </div>

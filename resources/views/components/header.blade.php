@@ -10,8 +10,8 @@
                     <h2>{{ $configuration->name }}</h2>
                 </a>
                 <div class="d-flex contact">
-                    <div>(11) 11111-11111</div>
-                    <div>(11) 11111-11111</div>
+                    <div class="mr-3">{{ $configuration->phone }}</div>
+                    <div class="mr-3">{{ $configuration->cell }}</div>
                     <div>Endereço</div>
                 </div>
             </div>
@@ -22,7 +22,7 @@
 <div class="d-flex info">
     <div class="info-item">
         <p class="text-success">Estamos Abertos</p>
-        <p>das x até as 23:59</p>
+        <p>das {{ $configuration->open->format('H:i') }}hrs até as {{ $configuration->close->format('H:i') }}hrs</p>
     </div>
     <div class="info-item">
         <p class="font-weight-bolder">Formas de Pagamento</p>

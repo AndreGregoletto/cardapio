@@ -36,9 +36,12 @@ class AppServiceProvider extends ServiceProvider
         }
 
         if(Schema::hasTable('configurations')){
-            $configurations = Configuration::whereNotNull('logo')->first();
 
-            \View::share('configuration', $configurations);
+            if(!session()->has('configuration')){
+                session()->put('configuration', Configuration::whereNotNull('logo')->first());
+            }
+
+            \View::share('configuration', session()->get('configuration'));
         }
     }
 }

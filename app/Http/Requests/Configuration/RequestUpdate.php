@@ -27,6 +27,10 @@ class RequestUpdate extends FormRequest
             'name'         => 'sometimes',
             'logo'         => 'nullable|sometimes|image',
             'type'         => 'sometimes',
+            'phone'        => 'sometimes',
+            'cell'         => 'sometimes',
+            'open'         => 'sometimes',
+            'close'        => 'sometimes',
             'delivery'     => 'sometimes',
             'delivery_fee' => 'sometimes'
         ];
