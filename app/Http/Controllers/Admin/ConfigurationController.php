@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Models\Configuration;
 use Illuminate\Http\Request;
+use App\Models\Configuration;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\Configuration\RequestUpdate;
 
 class ConfigurationController extends Controller
 {
@@ -70,9 +72,22 @@ class ConfigurationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(RequestUpdate $request, Configuration $configuration)
     {
-        //
+        $validated = $request->validated();
+
+        if(isset($validated['logo']) && $validated['logo']) {
+
+            if(Storage::disk('public')->exists($configuration->logo) && !str_contains($configuration->logo, 'logo.png')){
+                Storage::disk('public')->delete($configuration->logo);
+            }
+
+            $validated['logo'] = $validated['logo']->store('logo', 'public');
+        }
+
+        $configuration->update($validated);
+
+        return back();
     }
 
     /**

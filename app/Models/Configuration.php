@@ -10,11 +10,21 @@ class Configuration extends Model
     use HasFactory;
 
     protected $fillable = [
+        'name',
         'logo',
         'type',
+        'phone',
+        'cell',
+        'open',
+        'close',
         'delivery',
         'delivery_fee'
     ];
+
+    public function address()
+    {
+        return $this->morphOne(Address::class, 'owner');
+    }
 
     public function owner()
     {
