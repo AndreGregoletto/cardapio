@@ -10,7 +10,8 @@ class CheckoutRequest extends FormRequest
     public function prepareForValidation()
     {
         $this->merge([
-            'delivery' => $this->delivery == 'true' ? true : false
+            'delivery' => $this->delivery == 'true' ? true : false,
+            'date'     => now()->format('y-m-d')
         ]);
     }
 
@@ -36,14 +37,15 @@ class CheckoutRequest extends FormRequest
             'name'            => 'required',
             'phone'           => 'sometimes',
             'cell'            => 'required',
+            'date'            => 'required|date',
             'delivery'        => 'required|boolean',
-            'zipcode'         => 'required',
-            'address'         => 'required',
-            'neighborhood'    => 'required',
-            'number'          => 'required',
+            'zipcode'         => 'required_if:delivery,true',
+            'address'         => 'required_if:delivery,true',
+            'neighborhood'    => 'required_if:delivery,true',
+            'number'          => 'required_if:delivery,true',
             'complement'      => 'sometimes',
-            'city'            => 'required',
-            'state'           => 'required'
+            'city'            => 'required_if:delivery,true',
+            'state'           => 'required_if:delivery,true'
         ];
     }
 }

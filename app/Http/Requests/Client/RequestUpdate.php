@@ -33,7 +33,7 @@ class RequestUpdate extends FormRequest
             'address.number'       => 'required',
             'address.complement'   => 'sometimes',
             'address.city'         => 'required',
-            'address.state'       => 'required'
+            'address.state'        => 'required'
 
         ];
     }

@@ -5,7 +5,7 @@
                 <img class="img-fluid rounded-circle" src="{{ asset("storage/$configuration->logo") }}" width="250px" alt="Avatar">
             </div>
             <div class="header_type mt-5 ml-4">
-                <a href="{{ route('home') }}" class="text-white">
+                <a href="{{ route('menu.home') }}" class="text-white">
                     <p>{{ $configuration->type }}</p>
                     <h2>{{ $configuration->name }}</h2>
                 </a>

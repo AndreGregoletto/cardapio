@@ -20,7 +20,7 @@
                             @foreach ($category->products as $product)
                             <tr>
                                 <td>{{$product->code}} {{$product->name}}</td>
-                                <td>{{$product->price}}</td>
+                                <td>{{$product->price_parse}}</td>
                                 <td>
                                     <a href="{{route('menu.cart.add', $product->id)}}" class="btn btn-success"><i class="fas fa-plus"></i>Carrinho</a>
                                 </td>

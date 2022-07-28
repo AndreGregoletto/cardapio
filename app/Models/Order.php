@@ -52,6 +52,6 @@ class Order extends Model
 
     public function getTotalAttribute()
     {
-        return "R$ ".number_format($this->products->sum(fn($item) => $item->price * $item->pivot->quantity), 2,',','.');
+        return "R$ ".number_format($this->products->sum(fn($product) => $product->price * $product->pivot->quantity), 2,',','.');
     }
 }
