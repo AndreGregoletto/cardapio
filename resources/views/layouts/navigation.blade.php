@@ -88,6 +88,12 @@
                     </x-nav-link>
                 </li>
                 <li class="nav-item">
+                    <x-nav-link href="{{route('admin.reports.index')}}" active="admin.reports.*">
+                        <i class="nav-icon fas fa-bar-chart"></i>
+                        Relatórios
+                    </x-nav-link>
+                </li>
+                <li class="nav-item">
                     <x-nav-link href="{{route('admin.configurations.index')}}" active="admin.configurations.*">
                         <i class="nav-icon fas fa-cog"></i>
                         Configurações

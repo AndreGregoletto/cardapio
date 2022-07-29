@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\ClientController;
 use App\Http\Controllers\Admin\CollaboratorController;
 use App\Http\Controllers\Admin\ConfigurationController;
 use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\TypePaymentController;
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function(){
@@ -25,4 +26,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function(){
     Route::resource('clients', ClientController::class);
 
     Route::resource('orders', OrderController::class);
+
+    Route::resource('reports', ReportController::class);
 });
