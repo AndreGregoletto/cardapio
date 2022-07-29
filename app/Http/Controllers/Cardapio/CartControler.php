@@ -27,27 +27,7 @@ class CartControler extends Controller
 
             $products = collect(session()->get('cart'));
 
-            if($products->where('id', $product->id)->count()){
-
-                $products = $products->map(function($item) use ($product) {
-
-                    if($item['id'] == $product->id) {
-                        $item['quantity'] += 1;
-                        $item['total'] = $product->price * $item['quantity'];
-                    }
-
-                    return $item;
-                });
-
-            }else{
-                $products->push([
-                    'total'    => $product->price,
-                    'id'       => $product->id,
-                    'product'  => $product,
-                    'quantity' => 1
-                ]);
-
-            }
+            $products = $this->incrementQuantityProduct($products, $product);
 
             session()->put('cart', $products);
 
@@ -69,10 +49,47 @@ class CartControler extends Controller
     {
         $products = session()->get('cart');
 
-        $products->splice($index, 1);
+        $this->validateRemoveOndeProduct($products, $index);
 
         session()->put('cart', $products);
 
         return back();
+    }
+
+    public function incrementQuantityProduct($products, $product)
+    {
+        if($products->where('id', $product->id)->count()){
+
+            return $products = $products->map(function($item) use ($product) {
+
+                if($item['id'] == $product->id) {
+                    $item['quantity'] += 1;
+                    $item['total'] = $product->price * $item['quantity'];
+                }
+
+                return $item;
+            });
+        }
+
+        $products->push([
+            'total'    => $product->price,
+            'id'       => $product->id,
+            'product'  => $product,
+            'quantity' => 1
+        ]);
+
+        return $products;
+    }
+
+    public function validateRemoveOndeProduct($products, $index)
+    {
+        if($products->count()){
+            $products->splice($index, 1);
+            return true;
+        }
+
+        session()->forget('cart');
+
+        return false;
     }
 }
