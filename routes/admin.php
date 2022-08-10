@@ -27,5 +27,5 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function(){
 
     Route::resource('orders', OrderController::class);
 
-    Route::resource('reports', ReportController::class);
+    Route::get('reports', [ReportController::class, 'index'])->name('report');
 });

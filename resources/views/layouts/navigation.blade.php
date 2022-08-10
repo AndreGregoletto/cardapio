@@ -88,7 +88,7 @@
                     </x-nav-link>
                 </li>
                 <li class="nav-item">
-                    <x-nav-link href="{{route('admin.reports.index')}}" active="admin.reports.*">
+                    <x-nav-link href="{{route('admin.report')}}" active="admin.report">
                         <i class="nav-icon fas fa-bar-chart"></i>
                         Relatórios
                     </x-nav-link>
