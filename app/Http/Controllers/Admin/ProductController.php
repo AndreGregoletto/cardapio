@@ -46,11 +46,7 @@ class ProductController extends Controller
     {
         $data = $request->validated();
 
-        if ($request->hasFile('photo')) {
-            $filename = str::slug($data['name'],'_').'.'.$data['photo']->extension();
-            
-            $data['photo'] = $request->photo->storeAS('products',$filename,'public');
-        }
+        $data['photo'] = $this->uploadImage($request, 'products');
         
         Product::create($data);
 
@@ -92,11 +88,12 @@ class ProductController extends Controller
     {
         $data = $request->validated();
 
-        if ($request->hasFile('photo')) {
-            Storage::disk('public')->delete($product->photo);
-            
-            $filename = str::slug($data['name'],'_').'.'.$data['photo']->extension();
-            $data['photo'] = $request->photo->storeAS('products',$filename,'public');
+        $this->validateImageUploadedAndDelete($request, 'products', $product->photo);
+
+        $path = $this->uploadImage($request, 'products');
+        
+        if($path) {
+            $data['photo'] = $path;
         }
 
         $product->update($data);
@@ -115,5 +112,26 @@ class ProductController extends Controller
         $product->delete();
 
         return back();
+    }
+
+    protected function validateImageUploadedAndDelete($request, $path, $pathDatabase)
+    {
+        if(!$request->hasFile('photo') && !Storage::exists($path)){
+            return false;
+        }
+
+        Storage::delete($path);
+        return true;
+    }
+
+    protected function uploadImage($request, $path)
+    {
+        if($request->hasFile('photo')){
+            return false;
+        }
+
+        
+
+        return Storage::put($path, $request->photo);
     }
 }
