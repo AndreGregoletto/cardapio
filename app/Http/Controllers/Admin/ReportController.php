@@ -12,32 +12,37 @@ class ReportController extends Controller
 {
     public function index(Request $request)
     {
-        $orders        = Order::with('client', 'typePayment', 'products');
+        dd($request->all());
+        $orders = Order::with('client', 'typePayment', 'products');
+
+        $orders = $this->getFilter($orders, $request);
+
+        $orders = $orders->get();
+
         $clients       = Client::get();
         $type_payments = TypePayment::get();
 
-        $data = $this->getFilter($orders, $request);
-
-        return view('admin.report.index', ['orders' => $orders,
-                                           'clients' => $clients,
+        return view('admin.report.index', ['orders'        => $orders,
+                                           'clients'       => $clients,
                                            'type_payments' => $type_payments]);
     }
 
-    public function getFilter($modelOrders, $filters)
+    public function getFilter($orders, $request)
     {
-        // dd($filters->client, $filters->type_payment);
-        $query = '';
-
-        if(!empty($filters->client)){
-            dd('true');
-        }else{
-            dd('false');
+        if(!empty($request->client)){
+            $orders = $orders->where('client_id', $request->client);
         }
 
-        if(!empty($filters->type_payment)){
-            dd('true');
-        }else{
-            dd('false');
+        if(!empty($request->type_payment)){
+            $orders = $orders->where('type_payment_id', $request->type_payment);
         }
+
+        if(!empty($request->date)){
+
+        }
+
+        return $orders;
     }
 }
+
+// dentro do if fazer um explode para quebrar o valor dela em duas a partir do ifem, gerando dos indices [0] [1]
