@@ -12,7 +12,6 @@ class ReportController extends Controller
 {
     public function index(Request $request)
     {
-        dd($request->all());
         $orders = Order::with('client', 'typePayment', 'products');
 
         $orders = $this->getFilter($orders, $request);
@@ -38,11 +37,13 @@ class ReportController extends Controller
         }
 
         if(!empty($request->date)){
+            $data      = explode("-", $request->date);
+            $firstDate = date('Y-m-d', strtotime($data[0]));
+            $lastDate  = date('Y-m-d', strtotime($data[1]));
 
+            $orders    = $orders->whereBetween('date', [$firstDate, $lastDate]);
         }
 
         return $orders;
     }
 }
-
-// dentro do if fazer um explode para quebrar o valor dela em duas a partir do ifem, gerando dos indices [0] [1]
