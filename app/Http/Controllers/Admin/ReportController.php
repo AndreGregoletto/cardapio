@@ -12,6 +12,7 @@ class ReportController extends Controller
 {
     public function index(Request $request)
     {
+        // dd($request->all());
         $orders = Order::with('client', 'typePayment', 'products');
 
         $orders = $this->getFilter($orders, $request);
@@ -26,7 +27,7 @@ class ReportController extends Controller
                                            'type_payments' => $type_payments]);
     }
 
-    public function getFilter($orders, $request)
+    protected function getFilter($orders, $request)
     {
         if(!empty($request->client)){
             $orders = $orders->where('client_id', $request->client);
@@ -37,13 +38,20 @@ class ReportController extends Controller
         }
 
         if(!empty($request->date)){
-            $data      = explode("-", $request->date);
-            $firstDate = date('Y-m-d', strtotime($data[0]));
-            $lastDate  = date('Y-m-d', strtotime($data[1]));
-
-            $orders    = $orders->whereBetween('date', [$firstDate, $lastDate]);
+            $data   = explode(" - ", str_replace("/", "-",$request->date));
+            $period = $this->formatData($data);
+            $orders = $orders->whereBetween('date', [$period['first'], $period['second']]);
         }
 
         return $orders;
+    }
+
+    public function formatData($period)
+    {
+        $aPeriod           = [];
+        $aPeriod['first']  = date('Y-m-d', strtotime($period[0]));
+        $aPeriod['second'] = date('Y-m-d', strtotime($period[1]));
+
+        return $aPeriod;
     }
 }

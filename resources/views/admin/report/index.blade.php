@@ -40,7 +40,14 @@
                         </div>
                     </div>
                 </div>
-                <input type="submit" class="btn btn-primary" value="Buscar">
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="submit" class="btn btn-primary" value="Buscar">
+                        <input type="submit" class="btn btn-success" value="Exportar">
+                        {{-- <input type="submit" class="btn btn-secondary" value="Limpar"> --}}
+                        {{-- <a href="{{route('admin.report')}} "></a> --}}
+                    </div>
+                </div>
             </form>
 
             @if(count($orders))
