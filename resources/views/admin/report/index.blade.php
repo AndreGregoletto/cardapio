@@ -43,9 +43,8 @@
                 <div class="row">
                     <div class="col-md-6">
                         <input type="submit" class="btn btn-primary" value="Buscar">
-                        <input type="submit" class="btn btn-success" value="Exportar">
-                        {{-- <input type="submit" class="btn btn-secondary" value="Limpar"> --}}
-                        {{-- <a href="{{route('admin.report')}} "></a> --}}
+                        <a href="{{ route('admin.excel') }}"><input class="btn btn-success" value="Exportar" readonly></a>
+                        <a href="{{ route('admin.report') }}"><input class="btn btn-secondary" value="Limpar" readonly></a>
                     </div>
                 </div>
             </form>
@@ -84,7 +83,7 @@
             @if(!count($orders))
             <div class=" d-flex justify-content-center">
                 <div class="alert alert-danger mt-3 w-50 text-center" role="alert">
-                        Nenhum registro foi encontrato.
+                    Nenhum registro foi encontrato.
                 </div>
             </div>
             @endif

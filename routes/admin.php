@@ -6,6 +6,7 @@ use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\Admin\ClientController;
 use App\Http\Controllers\Admin\CollaboratorController;
 use App\Http\Controllers\Admin\ConfigurationController;
+use App\Http\Controllers\Admin\ExcelController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\TypePaymentController;
@@ -28,4 +29,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function(){
     Route::resource('orders', OrderController::class);
 
     Route::get('reports', [ReportController::class, 'index'])->name('report');
+
+    Route::get('excel', [ExcelController::class, 'export'])->name('excel');
 });

@@ -2,16 +2,17 @@
 
 namespace App\Exports;
 
-use App\Models\User;
+use App\Models\Order;
 use Maatwebsite\Excel\Concerns\FromCollection;
 
-class UsersExport implements FromCollection
+class OrdersExposrt implements FromCollection
 {
     /**
     * @return \Illuminate\Support\Collection
     */
     public function collection()
     {
-        return User::all();
+        // return Order::all();
+        return Order::with('client', 'typePayment', 'products')->get();
     }
 }
