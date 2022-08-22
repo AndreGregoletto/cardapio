@@ -30,5 +30,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function(){
 
     Route::get('reports', [ReportController::class, 'index'])->name('report');
 
-    Route::get('excel', [ExcelController::class, 'export'])->name('excel');
+    Route::get('getReportExport', [ReportController::class, 'getReportExport'])->name('getReportExport');
+    // Route::get('excel', [ExcelController::class, 'export'])->name('excel');
 });

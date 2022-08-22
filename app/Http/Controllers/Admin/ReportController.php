@@ -12,7 +12,6 @@ class ReportController extends Controller
 {
     public function index(Request $request)
     {
-        // dd($request->all());
         $orders = Order::with('client', 'typePayment', 'products');
 
         $orders = $this->getFilter($orders, $request);
@@ -53,5 +52,25 @@ class ReportController extends Controller
         $aPeriod['second'] = date('Y-m-d', strtotime($period[1]));
 
         return $aPeriod;
+    }
+
+    public function getReportExport(Request $request)
+    {
+        // dd($request->all());
+        $dataReport = Order::with('client', 'typePayment', 'products');
+
+        $dataReport = $this->getFilter($dataReport, $request);
+
+        $dataReport = $dataReport->get();
+        // dd($dataReport[0]->client->name);
+
+        $dataReport = [
+            'name'              => $dataReport[0]->client->name,
+            'produto'           => $dataReport[0]->products[0]->name,
+            'Tipo de pagamento' => $dataReport[0]->typePayment->name,
+            'Valor'             => $dataReport[0]->products[0]->price,
+            'Data da compra'    => $dataReport[0]->date
+        ];
+        dd($dataReport);
     }
 }
