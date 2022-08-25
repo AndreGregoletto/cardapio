@@ -46,7 +46,6 @@
                 </div>
                 <div class="row">{{--Buttons--}}
                     <input type="submit" class="btn btn-primary col-md-2 m-1" value="Buscar">
-                    {{-- <a href="{{ route('admin.excel') }}" class="btn btn-success col-md-2 m-1">Exportar</a> --}}
                     <input type="submit" class="btn btn-success col-md-2 m-1" formaction="{{'getReportExport'}}" value="Exportar">
                     <div class="col-md-5 ml-5"></div>{{-- Coll --}}
                     <a href="{{ route('admin.report') }}" class="btn btn-secondary col-md-2 m-1 align-self-end">Limpar</a>
@@ -56,13 +55,13 @@
             @if(count($orders))
                 <table class="table table-striped table bordered">
                     <thead>
-                        <th>#</th>
-                        <th>Cliente</th>
-                        <th>Data</th>
-                        <th>Produto</th>
-                        <th>Quantidade</th>
-                        <th>Método de Pagamento</th>
-                        <th>Preço</th>
+                        <th scope="col">#</th>
+                        <th scope="col">Cliente</th>
+                        <th scope="col">Data</th>
+                        <th scope="col">Produto</th>
+                        <th scope="col">Quantidade</th>
+                        <th scope="col">Método de Pagamento</th>
+                        <th scope="col">Preço</th>
                     </thead>
                     <tbody>
                         @foreach ($orders as $order)
